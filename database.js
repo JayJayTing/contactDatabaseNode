@@ -2,8 +2,11 @@ require("dotenv").config();
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 
-const pool = new Pool(dbParams);
-
+//const pool = new Pool(dbParams);
+const pool = new Pool({
+	connectionString: process.env.DATABASE_URL,
+	ssl: true
+});
 pool.connect();
 
 const getAllContacts = function() {
